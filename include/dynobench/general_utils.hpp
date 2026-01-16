@@ -19,11 +19,11 @@
 #include <chrono>
 #include <filesystem>
 
-template <class T> using ptr = boost::shared_ptr<T>;
+template <class T> using ptr = std::shared_ptr<T>;
 template <class T> using ptrs = std::shared_ptr<T>;
 
 template <typename T, typename... Args> auto mk(Args &&...args) {
-  return boost::make_shared<T>(std::forward<Args>(args)...);
+  return std::make_shared<T>(std::forward<Args>(args)...);
 }
 
 #include <nlohmann/json.hpp>

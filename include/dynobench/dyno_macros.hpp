@@ -69,9 +69,9 @@ std::string inline add_stacktrace(const std::string &msg) {
     throw std::runtime_error(add_stacktrace(msg));                             \
   }
 
-#define DYNO_DYNO_CHECK_GEQ(A, B, msg)                                         \
+#define DYNO_CHECK_GEQ(A, B, msg)                                              \
   if (!(A >= B)) {                                                             \
-    std::cout << "DYNO_DYNO_CHECK_GEQ failed: '" << #A << "'=" << A << " '"    \
+    std::cout << "DYNO_CHECK_GEQ failed: '" << #A << "'=" << A << " '"         \
               << #B << "'=" << B << " -- " << add_stacktrace(msg) << std::endl \
               << "AT: " << AT << std::endl;                                    \
     throw std::runtime_error(add_stacktrace(msg));                             \

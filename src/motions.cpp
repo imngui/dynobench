@@ -873,7 +873,7 @@ Trajectories cut_trajectory(const Trajectory &traj, size_t number_of_cuts,
     traj.goal = states.back();
     traj.cost = robot->ref_dt * traj.actions.size();
     {
-      traj.check(robot, true);
+      traj.check(robot, false);
       traj.update_feasibility();
     }
     CHECK(traj.feasible, AT);

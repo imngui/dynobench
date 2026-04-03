@@ -57,6 +57,7 @@ target_include_directories(
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 target_compile_options(dynobench PRIVATE -Wall -Wextra)
+target_compile_definitions(dynobench PUBLIC BOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED)
 
 target_link_libraries(
   dynobench

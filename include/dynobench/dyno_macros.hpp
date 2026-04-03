@@ -69,9 +69,9 @@ std::string inline add_stacktrace(const std::string &msg) {
     throw std::runtime_error(add_stacktrace(msg));                             \
   }
 
-#define DYNO_CHECK_GEQ(A, B, msg)                                              \
+#define DYNO_DYNO_CHECK_GEQ(A, B, msg)                                         \
   if (!(A >= B)) {                                                             \
-    std::cout << "DYNO_CHECK_GEQ failed: '" << #A << "'=" << A << " '"         \
+    std::cout << "DYNO_DYNO_CHECK_GEQ failed: '" << #A << "'=" << A << " '"    \
               << #B << "'=" << B << " -- " << add_stacktrace(msg) << std::endl \
               << "AT: " << AT << std::endl;                                    \
     throw std::runtime_error(add_stacktrace(msg));                             \
@@ -117,6 +117,10 @@ std::string inline add_stacktrace(const std::string &msg) {
                            " \"" + add_stacktrace(msg) + "\"\n");
 
 #define NOT_IMPLEMENTED ERROR_WITH_INFO("not implemented")
+
+// Aliases for newer dynoplan API compatibility
+#define DYNO_CHECK_GEQ(A, B, msg) DYNO_DYNO_CHECK_GEQ(A, B, msg)
+#define DYNO_CHECK(A, msg) CHECK(A, msg)
 
 #define WARN_WITH_INFO(msg)                                                    \
   std::cout << __FILE__ + std::string(":") + std::to_string(__LINE__) + "\"" + \

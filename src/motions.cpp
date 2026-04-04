@@ -220,12 +220,17 @@ void Problem::read_from_yaml(const YAML::Node &env) {
 
   for (const auto &robot_node : env["robots"]) {
     robotTypes.push_back(robot_node["type"].as<std::string>());
+    std::vector<double> _robot_start, _robot_goal;
     for (const auto &v : robot_node["start"]) {
       _start.push_back(v.as<double>());
+      _robot_start.push_back(v.as<double>());
     }
     for (const auto &v : robot_node["goal"]) {
       _goal.push_back(v.as<double>());
+      _robot_goal.push_back(v.as<double>());
     }
+    starts.push_back(Vxd::Map(_robot_start.data(), _robot_start.size()));
+    goals.push_back(Vxd::Map(_robot_goal.data(), _robot_goal.size()));
   }
 
   start = Vxd::Map(_start.data(), _start.size());

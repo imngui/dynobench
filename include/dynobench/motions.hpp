@@ -353,7 +353,14 @@ struct Trajectories {
     fin.read((char *)contents.data(), contents.size());
     fin.close();
 
-    *this = Trajectories(json::from_msgpack(contents));
+    auto j = json::from_msgpack(contents);
+    if (j.is_array()) {
+      // Raw array format: [{states, actions}, ...] — used by sorted msgpack files
+      data = j.get<std::vector<Trajectory>>();
+    } else {
+      // Wrapped object format: {"data": [{states, actions}, ...]}
+      *this = Trajectories(j);
+    }
   }
 
   void save_file_json(const char *filename) {

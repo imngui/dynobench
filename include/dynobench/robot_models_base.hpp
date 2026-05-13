@@ -648,6 +648,8 @@ struct Model_robot {
 
   virtual void sample_uniform(Eigen::Ref<Eigen::VectorXd> x);
 
+  // virtual void sample_guided(Eigen::Ref<Eigen::VectorXd> x, Eigen::Ref<const Eigen::VectorXd> lb, Eigen::Ref<const Eigen::VectorXd> ub);
+
   virtual void interpolate(Eigen::Ref<Eigen::VectorXd> xt,
                            const Eigen::Ref<const Eigen::VectorXd> &from,
                            const Eigen::Ref<const Eigen::VectorXd> &to,
